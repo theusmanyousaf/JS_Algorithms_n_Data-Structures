@@ -17,6 +17,25 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 
+const weapons = [
+  {
+    name: "stick",
+    power: 5
+  },
+  {
+    name: "dagger",
+    power: 30
+  },
+  {
+    name: "claw hammer",
+    power: 50
+  },
+  {
+    name: "sword",
+    power: 100
+  },
+];
+
 const locations = [
   {
     name: "town square",
@@ -73,15 +92,29 @@ function buyHealth() {
   if (gold >= 10) {
     gold -= 10;
     health += 10;
-    goldText.innerText = gold;
-    healthText.innerText = health;
+    goldText.innerText = gold;  // updated gold stats on screen
+    healthText.innerText = health; // updated health stats on screen
   } else {
     text.innerText = "You do not have enough gold to buy health."
   }
 }
 
 function buyWeapon() {
-
+  if(currentWeapon < weapons.length - 1 ){ // if currentWeapon is 1 less than total weapons we can buy last weapon
+    if (gold >= 30) {
+      gold -= 30;
+      currentWeapon++;
+      goldText.innerText = gold;
+      let newWeapon = weapons[currentWeapon].name; // accessed name from weapons object
+      text.innerText = "You now have a " + newWeapon + ".";
+      inventory.push(newWeapon); // pushed buyed weapon in the inventory array
+      text.innerText += " In your inventory you have: " + inventory;
+    } else {
+      text.innerText = "You do not have enough gold to buy a weapon.";
+    }
+  } else {
+    text.innerText = "You already have the most powerful weapon!";
+  }
 }
 
 function fightSlime() {
