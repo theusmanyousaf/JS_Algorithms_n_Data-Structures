@@ -114,6 +114,20 @@ function buyWeapon() {
     }
   } else {
     text.innerText = "You already have the most powerful weapon!";
+    button2.innerText = "Sell weapon for 15 gold";
+    button2.onclick = sellWeapon; //Once a player has the most powerful weapon, you can give them the ability to sell their old weapons.
+  }
+}
+
+function sellWeapon() {
+  if (inventory.length > 1) {
+    gold += 15;
+    goldText.innerText = gold;
+    let currentWeapon = inventory.shift(); // local scope variable 'currentWeapon', .shift() to remove and assign first element of the array.
+    text.innerText = "You sold a " + currentWeapon + ".";
+    text.innerText += " In your inventory you have: " + inventory;
+  } else {
+    text.innerText = "Don't sell your only weapon!";
   }
 }
 
