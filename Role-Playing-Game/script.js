@@ -18,23 +18,28 @@ const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 
 const weapons = [
-  {
-    name: "stick",
-    power: 5
-  },
-  {
-    name: "dagger",
-    power: 30
-  },
-  {
-    name: "claw hammer",
-    power: 50
-  },
-  {
-    name: "sword",
-    power: 100
-  },
+  { name: "stick", power: 5 },
+  { name: "dagger", power: 30 },
+  { name: "claw hammer", power: 50 },
+  { name: "sword", power: 100 },
 ];
+
+const monsters = [{
+  name: "slime",
+  level: 2,
+  health: 15
+},
+{
+  name: "fanged beast",
+  level: 8,
+  health: 60
+},
+{
+  name: "dragon",
+  level: 20,
+  health: 300
+}
+]
 
 const locations = [
   {
@@ -55,6 +60,12 @@ const locations = [
     "button functions": [fightSlime, fightBeast, goTown],
     text: "You enter the cave. You see some monsters."
   },
+  {
+    name: "fight",
+    "button text": ["Attack", "Dodge", "Run"],
+    "button functions": [attack, dodge, goTown],
+    text: "You are fighting a monster."
+  }
 ];
 
 // initialize buttons
@@ -84,10 +95,6 @@ function goCave() {
   update(locations[2]);
 }
 
-function fightDragon() {
-  console.log("Fighting dragon.");
-}
-
 function buyHealth() {
   if (gold >= 10) {
     gold -= 10;
@@ -100,7 +107,7 @@ function buyHealth() {
 }
 
 function buyWeapon() {
-  if(currentWeapon < weapons.length - 1 ){ // if currentWeapon is 1 less than total weapons we can buy last weapon
+  if (currentWeapon < weapons.length - 1) { // if currentWeapon is 1 less than total weapons we can buy last weapon
     if (gold >= 30) {
       gold -= 30;
       currentWeapon++;
@@ -132,9 +139,28 @@ function sellWeapon() {
 }
 
 function fightSlime() {
-
+  fighting = 0; // we have already defined it now we are assigning it according to its value in monsters array of objects.
+  goFight();
 }
 
 function fightBeast() {
+  fighting = 1;
+  goFight();
+}
 
+function fightDragon() {
+  fighting = 2;
+  goFight();
+}
+
+function goFight() {
+
+}
+
+function attack(){
+
+}
+
+function dodge(){
+  
 }
