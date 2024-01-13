@@ -182,8 +182,12 @@ function goFight() {
 function attack(){
   text.innerText = "The " + monsters[fighting].name + " attacks.";
   text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
-  health -= monsters[fighting].level;
-  monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
+  health -= getMonsterAttackValue(monsters[fighting].level); // making it more interesting with different ranges of monster attacks
+  if (isMonsterHit()) { // missing the hit to monster logic
+    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;    
+  } else {
+    text.innerText += " You miss."
+  }
   healthText.innerText = health;
   monsterHealthText.innerText = monsterHealth;
   if (health <= 0) {
@@ -191,6 +195,19 @@ function attack(){
   } else if (monsterHealth <= 0) { // Ternary Operator
     fighting === 2 ? winGame() : defeatMonster(); // winGame after we defeat 'dragon' 
   }
+  if (Math.random() <= .1 && inventory.length !== 1) { // possibility of the player's weapon breaking and it shouldn't be his only weapon
+    text.innerText += " Your " + inventory.pop() + " breaks.";
+    currentWeapon--;
+   }
+}
+
+function getMonsterAttackValue(level){
+  const hit = (level * 5) - (Math.floor(Math.random() * xp)); // This will set the monster's attack to five times their 'level' minus a random number between 0 and the player's 'xp'.
+  return hit > 0 ? hit : 0; // if hit value returns negative due to higher 'xp' value 
+}
+
+function isMonsterHit() {
+  return Math.random() > .2 || health < 20;
 }
 
 function dodge(){
