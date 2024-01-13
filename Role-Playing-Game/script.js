@@ -65,6 +65,12 @@ const locations = [
     "button text": ["Attack", "Dodge", "Run"],
     "button functions": [attack, dodge, goTown],
     text: "You are fighting a monster."
+  },
+  {
+    name: "kill monster",
+    "button text": ["Go to town square", "Go to town square", "Go to town square"],
+    "button functions": [goTown, goTown, goTown],
+    text: 'The monster screams "Arg!" as it dies. You gain experience points and find gold.'
   }
 ];
 
@@ -74,6 +80,7 @@ button2.onclick = goCave;
 button3.onclick = fightDragon;
 
 function update(location) {
+  monsterStats.style.display = "none"; // would hide monster stats ui
   button1.innerText = location["button text"][0];
   button2.innerText = location["button text"][1];
   button3.innerText = location["button text"][2];
@@ -181,4 +188,10 @@ function dodge(){
 
 function lose(){}
 
-function defeatMonster(){}
+function defeatMonster(){
+  gold += Math.floor(monsters[fighting].level * 6.7); // increment in gold after defeating the monster
+  xp += monsters[fighting].level;
+  goldText.innerText = gold;
+  xpText.innerText = xp;
+  update(locations[4]);
+}
