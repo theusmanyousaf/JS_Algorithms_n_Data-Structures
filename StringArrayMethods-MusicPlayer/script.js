@@ -90,6 +90,11 @@ let userData = {  // this obj will track user's data for playing deletion or kee
     songCurrentTime: 0,
 };
 
+const playSong = (id) => {
+    const song = userData?.songs.find((song) => song.id === id); // This will iterate through the "userData?.songs" array, searching for a song that corresponds to the "id" param passed into the "playSong" function.
+    audio.src = song.src; // where to find the audio data for the selected song.
+    audio.title = song.title; // This tells the audio element what to display as the title of the song.
+};
 
 const renderSongs = (array) => {
     const songsHTML = array
@@ -113,4 +118,4 @@ const renderSongs = (array) => {
     playlistSongs.innerHTML = songsHTML;
 };
 
-renderSongs(userData?.songs);
+renderSongs(userData?.songs); // Optional chaining (?.) helps prevent errors when accessing nested properties that might be null or undefined(i.e. not present).
