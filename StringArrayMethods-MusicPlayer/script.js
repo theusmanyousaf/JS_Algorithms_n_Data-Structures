@@ -94,6 +94,16 @@ const playSong = (id) => {
     const song = userData?.songs.find((song) => song.id === id); // This will iterate through the "userData?.songs" array, searching for a song that corresponds to the "id" param passed into the "playSong" function.
     audio.src = song.src; // where to find the audio data for the selected song.
     audio.title = song.title; // This tells the audio element what to display as the title of the song.
+
+    if (userData?.currentSong === null || userData?.currentSong.id !== song.id) {
+        audio.currentTime = 0;
+    } else {
+        audio.currentTime = userData.songCurrentTime;
+    }
+    userData.currentSong = song;
+    playButton.classList.add("playing");
+
+    audio.play();
 };
 
 const renderSongs = (array) => {
@@ -101,7 +111,7 @@ const renderSongs = (array) => {
         .map((song) => {
             return `
         <li id="song-${song.id}" class="playlist-song">
-        <button class="playlist-song-info">
+        <button class="playlist-song-info" onclick="playSong(${song.id})">
             <span class="playlist-song-title">${song.title}</span>
             <span class="playlist-song-artist">${song.artist}</span>
             <span class="playlist-song-duration">${song.duration}</span>
@@ -117,5 +127,14 @@ const renderSongs = (array) => {
 
     playlistSongs.innerHTML = songsHTML;
 };
+
+playButton.addEventListener("click", () => {
+    if (userData?.currentSong === null) {
+        playSong(userData?.songs[0].id);
+    } else {
+        playSong(userData?.currentSong.id);
+    }
+});
+
 
 renderSongs(userData?.songs); // Optional chaining (?.) helps prevent errors when accessing nested properties that might be null or undefined(i.e. not present).
