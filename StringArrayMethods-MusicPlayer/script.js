@@ -106,6 +106,12 @@ const playSong = (id) => {
     audio.play();
 };
 
+const pauseSong = () => {
+    userData.songCurrentTime = audio.currentTime;
+    playButton.classList.remove('playing'); // since the song will be paused at this point.
+    audio.pause();
+};
+
 const renderSongs = (array) => {
     const songsHTML = array
         .map((song) => {
@@ -136,5 +142,6 @@ playButton.addEventListener("click", () => {
     }
 });
 
+pauseButton.addEventListener("click", pauseSong);
 
 renderSongs(userData?.songs); // Optional chaining (?.) helps prevent errors when accessing nested properties that might be null or undefined(i.e. not present).
