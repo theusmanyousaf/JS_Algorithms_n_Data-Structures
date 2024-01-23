@@ -104,6 +104,7 @@ const playSong = (id) => {
     playButton.classList.add("playing");
 
     highlightCurrentSong();
+    setPlayerDisplay();
     audio.play();
 };
 
@@ -133,6 +134,16 @@ const playPreviousSong = () => {
 
         playSong(previousSong.id);
     }
+};
+
+const setPlayerDisplay = () => {
+    const playingSong = document.getElementById("player-song-title");
+    const songArtist = document.getElementById("player-song-artist");
+    const currentTitle = userData?.currentSong?.title;
+    const currentArtist = userData?.currentSong?.artist;
+
+    playingSong.textContent = currentTitle ? currentTitle : "";
+    songArtist.textContent = currentArtist ? currentArtist : "";
 };
 
 const highlightCurrentSong = () => {
@@ -181,5 +192,9 @@ playButton.addEventListener("click", () => {
 });
 
 pauseButton.addEventListener("click", pauseSong);
+
+nextButton.addEventListener("click", playNextSong);
+
+previousButton.addEventListener("click", playPreviousSong);
 
 renderSongs(userData?.songs); // Optional chaining (?.) helps prevent errors when accessing nested properties that might be null or undefined(i.e. not present).
