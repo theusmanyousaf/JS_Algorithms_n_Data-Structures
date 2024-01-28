@@ -22,3 +22,19 @@ const minutes = date.getMinutes();
 
 const formattedDate = `${day}-${month}-${year}`;
 currentDateParagraph.textContent = formattedDate;
+
+dateOptionsSelectElement.addEventListener("change", () => { // the change event is used to detect when the value of an HTML element has changed
+    switch (dateOptionsSelectElement.value) {
+        case "yyyy-mm-dd":
+            currentDateParagraph.textContent = formattedDate
+                .split("-")
+                .reverse()
+                .join("-");
+            break;
+        case "mm-dd-yyyy-h-mm":
+            currentDateParagraph.textContent = `${month}-${day}-${year} ${hours} Hours ${minutes} Minutes`;
+            break;
+        default:
+            currentDateParagraph.textContent = formattedDate;
+    }
+});
