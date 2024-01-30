@@ -13,7 +13,7 @@ const checkForPalindrome = (input) => {
     // Remove the previous result
     resultDiv.replaceChildren();
 
-    const lowerCaseString = input.replace(/^A-Za-z0-9/gi, '').toLowerCase();
+    const lowerCaseString = input.replace(/[^A-Za-z0-9]/gi, '').toLowerCase();
     const msgResult = `<strong>${originalInput}</strong> ${lowerCaseString === [...lowerCaseString].reverse().join('') ? 'is' : 'is not'} a palindrome.`;
 
     const pTag = document.createElement('p');
