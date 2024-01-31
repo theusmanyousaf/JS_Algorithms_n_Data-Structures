@@ -174,3 +174,13 @@ const myFavoriteFootballTeam = {
 
 // this method prevents changes made to given objects
 Object.freeze(myFavoriteFootballTeam);
+
+// object destructuring
+const { sport, team, year, players } = myFavoriteFootballTeam;
+const { coachName } = myFavoriteFootballTeam.headCoach;
+
+// showing values of favorite team obj on screen
+typeOfSport.textContent = sport;
+teamName.textContent = team;
+worldCupYear.textContent = year;
+headCoach.textContent = coachName;
