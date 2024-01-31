@@ -3,3 +3,5 @@
 <h3>2.Learn Form Validation by Building a Calorie counter</h3>
 <h3>3.Learn Basic Stirng and Array methods by Building a Music Player</h3>
 <h3>4.Learn Date Object by Building a Date Formatter</h3>
+<h3>5.Palindrome Checker Project</h3>
+<h3>6.Learn Modern JavaScript Methods by Building Football Team Cards</h3>
