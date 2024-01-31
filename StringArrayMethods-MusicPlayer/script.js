@@ -228,6 +228,18 @@ const renderSongs = (array) => {
     playlistSongs.innerHTML = songsHTML;
 };
 
+userData?.songs.sort((a, b) => {
+    if (a.title < b.title) {
+        return -1;
+    }
+
+    if (a.title > b.title) {
+        return 1;
+    }
+
+    return 0;
+});
+
 // this function is designed to dynamically update the accessibility text of a play button based on the current song in the userData object.
 const setPlayButtonAccessibleText = () => {
     const song = userData?.currentSong || userData?.songs[0];
