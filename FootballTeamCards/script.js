@@ -184,3 +184,19 @@ typeOfSport.textContent = sport;
 teamName.textContent = team;
 worldCupYear.textContent = year;
 headCoach.textContent = coachName;
+
+const setPlayerCards = (arr = players) => {
+    playerCards.innerHTML += arr
+        .map(
+            ({ name, position, number, isCaptain, nickname }) =>
+                `
+          <div class="player-card">
+            <h2>${name} ${isCaptain ? "(Captain)" : ""}</h2>
+            <p>Position: ${position}</p>
+            <p>Number: ${number}</p>
+            <p>Nickname: ${nickname !== null ? nickname : "N/A"}</p>
+          </div>
+        `
+        )
+        .join(""); // join method to avoid showing of comma separation which occurs as a result of map method
+};
