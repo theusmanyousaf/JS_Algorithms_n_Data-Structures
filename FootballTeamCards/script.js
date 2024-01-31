@@ -171,3 +171,6 @@ const myFavoriteFootballTeam = {
         },
     ],
 };
+
+// this method prevents changes made to given objects
+Object.freeze(myFavoriteFootballTeam);
