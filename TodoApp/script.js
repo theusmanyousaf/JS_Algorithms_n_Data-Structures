@@ -22,3 +22,10 @@ openTaskFormBtn.addEventListener("click", () =>
 closeTaskFormBtn.addEventListener("click", () => {
     confirmCloseDialog.showModal(); // The HTML dialog element has a showModal() method that can be used to display a modal dialog box on a web page.
 });
+
+cancelBtn.addEventListener("click", () => confirmCloseDialog.close());
+
+discardBtn.addEventListener("click", () => {
+    confirmCloseDialog.close();
+    taskForm.classList.toggle("hidden");
+});
