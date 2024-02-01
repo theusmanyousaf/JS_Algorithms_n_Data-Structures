@@ -10,3 +10,7 @@ const descriptionInput = document.getElementById("description-input");
 const taskData = []
 
 let currentTask = {} // This variable will be used to track the state when editing and discarding tasks.
+
+openTaskFormBtn.addEventListener("click", () =>
+  taskForm.classList.toggle("hidden") // The toggle method will add the class if it is not present on the element, and remove the class if it is present on the element.
+);
