@@ -15,6 +15,14 @@ const taskData = []
 
 let currentTask = {} // This variable will be used to track the state when editing and discarding tasks.
 
+const reset = () => {
+    titleInput.value = "";
+    dateInput.value = "";
+    descriptionInput.value = "";
+    taskForm.classList.toggle("hidden");
+    currentTask = {};
+}
+
 openTaskFormBtn.addEventListener("click", () =>
     taskForm.classList.toggle("hidden") // The toggle method will add the class if it is not present on the element, and remove the class if it is present on the element.
 );
@@ -27,7 +35,7 @@ cancelBtn.addEventListener("click", () => confirmCloseDialog.close());
 
 discardBtn.addEventListener("click", () => {
     confirmCloseDialog.close();
-    taskForm.classList.toggle("hidden");
+    reset(); // when you click the Discard button, everything in the input fields should go away.
 });
 
 // getting the values from the input fields, save them into the taskData array, and display them on the page.
@@ -59,5 +67,5 @@ taskForm.addEventListener("submit", (e) => {
     }
     );
 
-    taskForm.classList.toggle("hidden");
+    reset();
 })
