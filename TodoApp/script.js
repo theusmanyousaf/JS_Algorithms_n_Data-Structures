@@ -28,7 +28,13 @@ openTaskFormBtn.addEventListener("click", () =>
 );
 
 closeTaskFormBtn.addEventListener("click", () => {
-    confirmCloseDialog.showModal(); // The HTML dialog element has a showModal() method that can be used to display a modal dialog box on a web page.
+    const formInputsContainValues = titleInput.value || dateInput.value || descriptionInput.value;
+
+    if (formInputsContainValues) {
+        confirmCloseDialog.showModal(); // The HTML dialog element has a showModal() method that can be used to display a modal dialog box on a web page.
+    } else {
+        reset();
+    }
 });
 
 cancelBtn.addEventListener("click", () => confirmCloseDialog.close());
