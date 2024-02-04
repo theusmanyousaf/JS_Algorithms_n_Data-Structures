@@ -91,8 +91,10 @@ openTaskFormBtn.addEventListener("click", () =>
 
 closeTaskFormBtn.addEventListener("click", () => {
     const formInputsContainValues = titleInput.value || dateInput.value || descriptionInput.value;
+    // If the user attempts to edit a task but decides not to make any changes before closing the form, there is no need to display the modal with the Cancel and Discard buttons.
+    const formInputValuesUpdated = titleInput.value !== currentTask.title || dateInput.value !== currentTask.date || descriptionInput.value !== currentTask.description;
 
-    if (formInputsContainValues) {
+    if (formInputsContainValues && formInputValuesUpdated) {
         confirmCloseDialog.showModal(); // The HTML dialog element has a showModal() method that can be used to display a modal dialog box on a web page.
     } else {
         reset();
