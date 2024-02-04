@@ -87,6 +87,10 @@ const reset = () => {
     currentTask = {};
 }
 
+if (taskData.length) { // for rendering already present tasks in UI
+    updateTaskContainer();
+}
+
 openTaskFormBtn.addEventListener("click", () =>
     taskForm.classList.toggle("hidden") // The toggle method will add the class if it is not present on the element, and remove the class if it is present on the element.
 );
