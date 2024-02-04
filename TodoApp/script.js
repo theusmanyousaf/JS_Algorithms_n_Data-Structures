@@ -11,7 +11,7 @@ const dateInput = document.getElementById("date-input");
 const descriptionInput = document.getElementById("description-input");
 
 // This array will enable you to keep track of tasks, display them on the page, and save them to localStorage
-const taskData = []
+const taskData = JSON.parse(localStorage.getItem("data")) || []; // to retrieve the tasks saved in local storage and render in UI
 
 let currentTask = {} // This variable will be used to track the state when editing and discarding tasks.
 
@@ -31,6 +31,7 @@ const addOrUpdateTask = () => {
         taskData[dataArrIndex] = taskObj;  // for edit function to render changes we need to update taskObj
     }
 
+    localStorage.setItem("data", JSON.stringify(taskData)); // saves taskData array in string format in localStorage and would persist data once user adds or updated tasks
     updateTaskContainer()
     reset()
 };
@@ -59,6 +60,7 @@ const deleteTask = (buttonEl) => {
     );
     buttonEl.parentElement.remove() // removing it from dom
     taskData.splice(dataArrIndex, 1) // removing from taskData array
+    localStorage.setItem("data", JSON.stringify(taskData)); // we are just updating data again after deletion
 }
 
 const editTask = (buttonEl) => {
@@ -114,3 +116,22 @@ taskForm.addEventListener("submit", (e) => {
 
     addOrUpdateTask();
 })
+
+{/*If you check the Application tab of your browser console, you'll notice a series of [object Object].
+This is because everything you save in localStorage needs to be in string format.
+To resolve the issue, wrap the data you're saving in the JSON.stringify() method.*/}
+
+{/*
+
+localStorage.setItem("data", JSON.stringify(myTaskArr)); 
+
+localStorage.removeItem("data") // removes data from localStorage with Key named "data"
+localStorage.clear() // removes all key/value pairs in localStorage
+
+const getTaskArr = localStorage.getItem("data")
+console.log(getTaskArr)
+
+const getTaskArrObj = JSON.parse(localStorage.getItem("data")); //  To view it in its original form before saving, you use JSON.parse()
+console.log(getTaskArrObj)
+
+*/}
