@@ -3,26 +3,13 @@ const convertBtn = document.getElementById("convert-btn");
 const result = document.getElementById("result");
 
 const decimalToBinary = (input) => {
-    const inputs = [];
-    const quotients = [];
-    const remainders = [];
-
-    if (input === 0) {
-        result.innerText = "0";
-        return; // to break out of function early
-    }
+    let binary = "";
 
     while (input > 0) {
-        const quotient = Math.floor(input / 2);
-        const remainder = input % 2;
-
-        inputs.push(input);
-        quotients.push(quotient);
-        remainders.push(remainder);
-        input = quotient;
+        input = Math.floor(input / 2);
     }
 
-    result.innerText = remainders.reverse().join("");
+    result.innerText = binary;
 }
 
 const checkUserInput = () => {
