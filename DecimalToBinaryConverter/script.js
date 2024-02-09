@@ -5,7 +5,12 @@ const result = document.getElementById("result");
 const decimalToBinary = (input) => {
     let binary = "";
 
+    if (input === 0) {
+        binary = "0";
+    }
+
     while (input > 0) {
+        binary = (input % 2) + binary; // This is what will build the binary string from right to left.
         input = Math.floor(input / 2);
     }
 
