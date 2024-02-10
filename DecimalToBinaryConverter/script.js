@@ -2,34 +2,13 @@ const numberInput = document.getElementById("number-input");
 const convertBtn = document.getElementById("convert-btn");
 const result = document.getElementById("result");
 
-const countDownAndUp = (number) => {
-    console.log(number);
-
-    if (number === 0) {
-        console.log("Reached base case");
-        return;
+const decimalToBinary = (input) => {
+    if (input === 0) {
+        return "";
     } else {
-        countDownAndUp(number - 1);
-        console.log(number);
+        return decimalToBinary(Math.floor(input / 2)) + (input % 2);
     }
 };
-
-countDownAndUp(3);
-
-const decimalToBinary = (input) => {
-    let binary = "";
-
-    if (input === 0) {
-        binary = "0";
-    }
-
-    while (input > 0) {
-        binary = (input % 2) + binary; // This is what will build the binary string from right to left.
-        input = Math.floor(input / 2);
-    }
-
-    result.innerText = binary;
-}
 
 const checkUserInput = () => {
     if (!numberInput.value || isNaN(parseInt(numberInput.value))) {
@@ -37,7 +16,7 @@ const checkUserInput = () => {
         return;
     }
 
-    decimalToBinary(parseInt(numberInput.value));
+    result.textContent = decimalToBinary(parseInt(numberInput.value));
     numberInput.value = ""; // to clear input after each value check
 };
 
