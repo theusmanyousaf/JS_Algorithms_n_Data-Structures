@@ -5,7 +5,9 @@ const sortInputArray = (event) => {
     // Since we have an array, we can use the map method to convert each value to a number.
     const inputValues = [...document.getElementsByClassName("values-dropdown")].map((dropdown) => Number(dropdown.value));
 
-    const sortedValues = insertionSort(inputValues);
+    const sortedValues = inputValues.sort((a, b) => {
+        return a - b;
+    });
 
     updateUI(sortedValues)
 }
