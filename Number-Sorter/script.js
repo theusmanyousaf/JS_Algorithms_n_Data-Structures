@@ -5,9 +5,9 @@ const sortInputArray = (event) => {
     // Since we have an array, we can use the map method to convert each value to a number.
     const inputValues = [...document.getElementsByClassName("values-dropdown")].map((dropdown) => Number(dropdown.value));
 
-    const sortedValues = bubbleSort(inputValues);
+    const sortedValues = selectionSort(inputValues);
 
-    updateUI(inputValues)
+    updateUI(sortedValues)
 }
 
 const updateUI = (array = []) => {
@@ -26,6 +26,24 @@ const bubbleSort = (array) => {
                 array[j + 1] = temp;
             }
         }
+    }
+
+    return array;
+}
+
+const selectionSort = (array) => {
+    for (let i = 0; i < array.length; i++) {
+        let minIndex = i;
+
+        for (let j = i + 1; j < array.length; j++) {
+            if (array[j] < array[minIndex]) {
+                minIndex = j;
+            }
+        }
+
+        const temp = array[i];
+        array[i] = array[minIndex];
+        array[minIndex] = temp;
     }
 
     return array;
