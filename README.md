@@ -8,4 +8,5 @@
 <h3>7. Learn localStorage by Building a Todo App</h3>
 <h3>8. Learn Recursion by Building a Decimal To Binary Converter</h3>
 <h3>9. Roman Numeral Converter</h3>
-<h3>10. Learn Basic Algrithmic Thinking by building a Number Sorter.</h3>
+<h3>10. Learn Basic Algrithmic Thinking by building a Number Sorter</h3>
+<h3>11. Learn Advanced Array Methods by building a Statistics Calculator</h3>
