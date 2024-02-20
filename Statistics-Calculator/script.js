@@ -27,18 +27,30 @@ const getMode = (array) => {
 
 const getRange = array => Math.max(...array) - Math.min(...array);
 
+const getVariance = (array) => {
+    const mean = getMean(array);
+    const variance = array.reduce((acc, el) => {
+        const difference = el - mean;
+        const squared = difference ** 2;
+        return acc + squared;
+    }, 0) / array.length;
+    return variance;
+}
+
 const calculate = () => {
     const value = document.querySelector("#numbers").value; // selects input element with id 'numbers' and returns its value entered by user
     const array = value.split(/,\s*/g); // splits values entered in the form of an array separated by commas regrdless of spaces between them
     const numbers = array.map(el => Number(el)).filter(el => !isNaN(el));  // converts input string values into numbers // filters out values which are not numbers
 
     const mean = getMean(numbers);
-    const median = getMedian(numbers)
+    const median = getMedian(numbers);
     const mode = getMode(numbers);
-    const range = getRange(numbers)
+    const range = getRange(numbers);
+    const variance = getVariance(numbers);
 
     document.querySelector("#mean").textContent = mean; // displays mean value
     document.querySelector("#median").textContent = median;
     document.querySelector("#mode").textContent = mode;
     document.querySelector("#range").textContent = range;
+    document.querySelector("#variance").textContent = variance;
 }
