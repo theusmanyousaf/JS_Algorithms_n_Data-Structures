@@ -2,7 +2,7 @@
 const getMean = (array) => array.reduce((acc, el) => acc + el, 0) / array.length; // this initialize the accumulator with 0 value 
 
 const getMedian = (array) => { // we can reduce this function to fewer lines as well but this will make code more complex for future maintainability
-    const sorted = array.sort((a, b) => a - b);
+    const sorted = array.slice().sort((a, b) => a - b); //  The empty .slice() call will make a shallow copy of the array, which you are free to mutate.
     const median =
         array.length % 2 === 0
             ? getMean([sorted[array.length / 2], sorted[array.length / 2 - 1]])
@@ -37,6 +37,12 @@ const getVariance = (array) => {
     return variance;
 }
 
+const getStandardDeviation = (array) => {
+    const variance = getVariance(array);
+    const standardDeviation = Math.sqrt(variance);
+    return standardDeviation;
+}
+
 const calculate = () => {
     const value = document.querySelector("#numbers").value; // selects input element with id 'numbers' and returns its value entered by user
     const array = value.split(/,\s*/g); // splits values entered in the form of an array separated by commas regrdless of spaces between them
@@ -47,10 +53,12 @@ const calculate = () => {
     const mode = getMode(numbers);
     const range = getRange(numbers);
     const variance = getVariance(numbers);
+    const standardDeviation = getStandardDeviation(numbers);
 
     document.querySelector("#mean").textContent = mean; // displays mean value
     document.querySelector("#median").textContent = median;
     document.querySelector("#mode").textContent = mode;
     document.querySelector("#range").textContent = range;
     document.querySelector("#variance").textContent = variance;
+    document.querySelector("#standardDeviation").textContent = standardDeviation;
 }
