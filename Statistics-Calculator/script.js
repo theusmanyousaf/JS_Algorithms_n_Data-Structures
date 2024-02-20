@@ -25,6 +25,8 @@ const getMode = (array) => {
     return mode.join(", ");
 }
 
+const getRange = array => Math.max(...array) - Math.min(...array);
+
 const calculate = () => {
     const value = document.querySelector("#numbers").value; // selects input element with id 'numbers' and returns its value entered by user
     const array = value.split(/,\s*/g); // splits values entered in the form of an array separated by commas regrdless of spaces between them
@@ -33,8 +35,10 @@ const calculate = () => {
     const mean = getMean(numbers);
     const median = getMedian(numbers)
     const mode = getMode(numbers);
+    const range = getRange(numbers)
 
     document.querySelector("#mean").textContent = mean; // displays mean value
     document.querySelector("#median").textContent = median;
     document.querySelector("#mode").textContent = mode;
+    document.querySelector("#range").textContent = range;
 }
