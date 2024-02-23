@@ -32,6 +32,17 @@ const spreadsheetFunctions = { // to keep track of built-in functions
     median
 }
 
+
+const applyFunction = str => {
+    const noHigh = highPrecedence(str);
+    const infix = /([\d.]+)([+-])([\d.]+)/;
+    const str2 = infixEval(noHigh, infix);
+    const functionCall = /([a-z]*)\(([0-9., ]*)\)(?!.*\()/i;
+    const toNumberList = args => args.split(",").map(parseFloat);
+    const apply = (fn, args) => spreadsheetFunctions[fn.toLowerCase()](toNumberList(args));
+    return str2.replace(functionCall, (match, fn, args) => spreadsheetFunctions.hasOwnProperty(fn.toLowerCase()) ? apply(fn, args) : match);
+}
+
 const range = (start, end) => Array(end - start + 1).fill(start).map((element, index) => element + index);
 const charRange = (start, end) => range(start.charCodeAt(0), end.charCodeAt(0)).map(code => String.fromCharCode(code));
 
