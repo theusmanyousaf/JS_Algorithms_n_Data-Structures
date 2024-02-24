@@ -10,4 +10,5 @@
 <h3>9. Roman Numeral Converter</h3>
 <h3>10. Learn Basic Algrithmic Thinking by building a Number Sorter</h3>
 <h3>11. Learn Advanced Array Methods by building a Statistics Calculator</h3>
-<h3>11. Learn Functional Programming by building a Spreadsheet</h3>
+<h3>12. Learn Functional Programming by building a Spreadsheet</h3>
+<h3>13. Learn Regular Expressions by building a Spam Filter</h3>
