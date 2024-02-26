@@ -13,3 +13,4 @@
 <h3>12. Learn Functional Programming by building a Spreadsheet</h3>
 <h3>13. Learn Regular Expressions by building a Spam Filter</h3>
 <h3>14. Telephone Number Validator</h3>
+<h3>15. Learn Basic OOP by building a Shopping Cart</h3>
