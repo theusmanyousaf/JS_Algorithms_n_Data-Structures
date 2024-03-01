@@ -3,3 +3,7 @@ const canvas = document.getElementById("canvas");
 const startScreen = document.querySelector(".start-screen");
 const checkpointScreen = document.querySelector(".checkpoint-screen");
 const checkpointMessage = document.querySelector(".checkpoint-screen > p"); // accessing child property
+
+const ctx = canvas.getContext("2d"); // 2d graphics using canvas property
+canvas.width = innerWidth;
+canvas.height = innerHeight;
