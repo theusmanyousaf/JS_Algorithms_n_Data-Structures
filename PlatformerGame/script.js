@@ -4,7 +4,7 @@ const startScreen = document.querySelector(".start-screen");
 const checkpointScreen = document.querySelector(".checkpoint-screen");
 const checkpointMessage = document.querySelector(".checkpoint-screen > p"); // accessing child property
 
-const ctx = canvas.getContext("2d"); // 2d graphics using canvas property
+const ctx = canvas.getContext("2d"); // 2d graphics using canvas API
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 const gravity = 0.5;
@@ -58,6 +58,58 @@ class Player {
 }
 
 const player = new Player();
+
+const animate = () => {
+    requestAnimationFrame(animate); // API for animation
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // clearing the canvas before rendering next frame
+    player.update();
+
+    if (keys.rightKey.pressed && player.position.x < proportionalSize(400)) {
+        player.velocity.x = 5;
+    } else if (keys.leftKey.pressed && player.position.x > proportionalSize(100)) {
+        player.velocity.x = -5;
+    } else {
+        player.velocity.x = 0;
+    }
+}
+
+const keys = {
+    rightKey: {
+        pressed: false
+    },
+    leftKey: {
+        pressed: false
+    }
+};
+
+const movePlayer = (key, xVelocity, isPressed) => {
+    if (!isCheckpointCollisionDetectionActive) {
+        player.velocity.x = 0;
+        player.velocity.y = 0;
+        return;
+    }
+
+    switch (key) {
+        case "ArrowLeft":
+            keys.leftKey.pressed = isPressed;
+            if (xVelocity === 0) {
+                player.velocity.x = xVelocity;
+            }
+            player.velocity.x -= xVelocity;
+            break;
+        case "ArrowUp":
+        case " ":
+        case "Spacebar":
+            player.velocity.y -= 8;
+            break;
+        case "ArrowRight":
+            keys.rightKey.pressed = isPressed;
+            if (xVelocity === 0) {
+                player.velocity.x = xVelocity;
+            }
+            player.velocity.x += xVelocity;
+    }
+}
 
 const startGame = () => {
     canvas.style.display = "block";
