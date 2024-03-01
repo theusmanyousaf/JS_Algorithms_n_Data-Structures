@@ -14,3 +14,4 @@
 <h3>13. Learn Regular Expressions by building a Spam Filter</h3>
 <h3>14. Telephone Number Validator</h3>
 <h3>15. Learn Basic OOP by building a Shopping Cart</h3>
+<h3>16. Learn Intermediate OOP by building a Platformer Game</h3>
