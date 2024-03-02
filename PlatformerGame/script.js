@@ -98,12 +98,26 @@ const animate = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // clearing the canvas before rendering next frame
     player.update();
 
+    platforms.forEach((platform) => {
+        platform.draw();
+    });
+
     if (keys.rightKey.pressed && player.position.x < proportionalSize(400)) {
         player.velocity.x = 5;
     } else if (keys.leftKey.pressed && player.position.x > proportionalSize(100)) {
         player.velocity.x = -5;
     } else {
         player.velocity.x = 0;
+
+        if (keys.rightKey.pressed && isCheckpointCollisionDetectionActive) {
+            platforms.forEach((platform) => {
+                platform.position.x -= 5;
+            });
+        } else if (keys.leftKey.pressed && isCheckpointCollisionDetectionActive) {
+            platforms.forEach((platform) => {
+                platform.position.x += 5;
+            });
+        }
     }
 }
 
