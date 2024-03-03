@@ -135,6 +135,10 @@ const animate = () => {
         platform.draw();
     });
 
+    checkpoints.forEach(checkpoint => {
+        checkpoint.draw();
+    });
+
     if (keys.rightKey.pressed && player.position.x < proportionalSize(400)) {
         player.velocity.x = 5;
     } else if (keys.leftKey.pressed && player.position.x > proportionalSize(100)) {
@@ -146,9 +150,18 @@ const animate = () => {
             platforms.forEach((platform) => {
                 platform.position.x -= 5;
             });
+
+            checkpoints.forEach((checkpoint) => {
+                checkpoint.position.x -= 5;
+            });
+
         } else if (keys.leftKey.pressed && isCheckpointCollisionDetectionActive) {
             platforms.forEach((platform) => {
                 platform.position.x += 5;
+            });
+
+            checkpoints.forEach((checkpoint) => {
+                checkpoint.position.x += 5;
             });
         }
     }
