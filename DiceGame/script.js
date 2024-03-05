@@ -9,3 +9,15 @@ const rollDiceBtn = document.getElementById("roll-dice-btn");
 const keepScoreBtn = document.getElementById("keep-score-btn");
 const rulesContainer = document.querySelector(".rules-container");
 const rulesBtn = document.getElementById("rules-btn");
+
+rulesBtn.addEventListener("click", () => {
+    isModalShowing = !isModalShowing;
+
+    if (isModalShowing) {
+        rulesBtn.textContent = "Hide Rules";
+        rulesContainer.style.display = "block";
+    } else {
+        rulesBtn.textContent = "Show Rules";
+        rulesContainer.style.display = "none";
+    }
+});
