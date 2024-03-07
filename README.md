@@ -17,3 +17,4 @@
 <h3>16. Learn Intermediate OOP by building a Platformer Game</h3>
 <h3>17. Learn Intermediate Algorithmic Thinking by building a Dice Game</h3>
 <h3>18. Cash Register Project</h3>
+<h3>19. Learn Fetch and Promises by building an fCC Authors Page</h3>
