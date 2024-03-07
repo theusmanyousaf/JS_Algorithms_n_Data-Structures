@@ -17,6 +17,14 @@ const purchaseBtn = document.getElementById('purchase-btn');
 const priceScreen = document.getElementById('price-screen');
 const cashDrawerDisplay = document.getElementById('cash-drawer-display');
 
+const formatResults = (status, change) => {
+    displayChangeDue.innerHTML = `<p>Status: ${status}</p>`;
+    change.map(
+        money => (displayChangeDue.innerHTML += `<p>${money[0]}: $${money[1]}</p>`)
+    );
+    return;
+};
+
 const checkCashRegister = () => {
     if (Number(cash.value) < price) {
         alert('Customer does not have enough money to purchase the item');
@@ -72,6 +80,13 @@ const checkCashRegister = () => {
     updateUI(result.change);
 };
 
+const checkResults = () => {
+    if (!cash.value) {
+        return;
+    }
+    checkCashRegister();
+};
+
 const updateUI = change => {
     const currencyNameMap = {
         PENNY: 'Pennies',
@@ -100,5 +115,13 @@ const updateUI = change => {
             .join('')}  
   `;
 };
+
+purchaseBtn.addEventListener('click', checkResults);
+
+cash.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+        checkResults();
+    }
+});
 
 updateUI();
