@@ -16,6 +16,17 @@ fetch('https://cdn.freecodecamp.org/curriculum/news-author-page/authors.json')
         console.error(`There was an error: ${err}`);
     });
 
+const fetchMoreAuthors = () => {
+    startingIndex += 8;
+    endingIndex += 8;
+
+    displayAuthors(authorDataArr.slice(startingIndex, endingIndex));
+    if (authorDataArr.length <= endingIndex) {
+        loadMoreBtn.disabled = true;
+        loadMoreBtn.textContent = 'No more data to load';
+    }
+};
+
 const displayAuthors = (authors) => {
     authors.forEach(({ author, image, url, bio }, index) => {
         authorContainer.innerHTML += `
@@ -28,3 +39,5 @@ const displayAuthors = (authors) => {
       `;
     });
 };
+
+loadMoreBtn.addEventListener('click', fetchMoreAuthors);
